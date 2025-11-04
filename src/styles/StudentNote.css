@@ -1,0 +1,639 @@
+.student-note-container {
+  width: 100%;
+  /* increase page container so cards can be wider on desktop */
+  max-width: 1240px;
+  margin: 24px auto;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(250, 255, 250, 0.86)
+  ); /* flat card background */
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 12px 36px rgba(11, 28, 50, 0.07);
+  border: 1px solid rgba(11, 28, 50, 0.04);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.topic-card {
+  align-items: stretch;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  border: 1px solid rgba(11, 28, 50, 0.4);
+  box-shadow: 0 18px 36px rgba(11, 28, 50, 0.12);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 220ms ease;
+  will-change: transform;
+}
+
+.topic-card:hover,
+.topic-card:focus-within {
+  transform: translateY(-8px);
+  /* deeper hover shadow for more pronounced elevation */
+  justify-content: center; /* Keep centered on mobile */
+  z-index: 3;
+}
+
+.topic-title {
+  font-size: 16px;
+  color: #06325a;
+  margin: 0;
+}
+
+/* topic cards now stretch to the column width (no max-width constraint) */
+
+.page-title {
+  font-weight: 800;
+  color: #062a48;
+  margin-bottom: 0.75rem;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 768px) {
+  .topic-card {
+    padding: 12px;
+  }
+  .topic-title {
+    font-size: 15px;
+  }
+  /* keep two columns down to small sizes; collapse to one column on very small screens */
+  .important-topics-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}
+
+.form-input {
+  border: 1px solid rgba(11, 28, 50, 0.4);
+}
+
+/* Enhanced Add Note modal visuals */
+.addnote-backdrop {
+  background: rgba(6, 18, 30, 0.55) !important; /* darker dim */
+  backdrop-filter: blur(106px) saturate(2.05);
+}
+.addnote-modal-dialog {
+  max-width: 680px;
+  margin: 1.75rem auto;
+}
+.addnote-modal-content {
+  border-radius: 14px;
+  border: 1px solid rgba(6, 18, 30, 0.06);
+  box-shadow: 0 48px 120px rgba(6, 18, 30, 0.25);
+  padding: 20px;
+  transform: translateY(-6px);
+  animation: addnote-enter 220ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+.addnote-modal-content .form-label {
+  color: #0b2b4a;
+}
+.addnote-modal-content .form-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 28, 50, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.addnote-modal-content .form-input:focus {
+  outline: none;
+  border-color: #1d57d6;
+  box-shadow: 0 8px 28px rgba(13, 45, 100, 0.12);
+}
+
+@keyframes addnote-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* StudentNote page buttons */
+.sn-add-btn,
+.sn-checklist-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(11, 28, 50, 0.09);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 120ms ease;
+}
+.sn-checklist-btn {
+  background: #0ea5a4; /* teal-ish */
+}
+.sn-add-btn:hover,
+.sn-checklist-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 64px rgba(11, 28, 50, 0.14);
+}
+.sn-add-btn:focus,
+.sn-checklist-btn:focus {
+  outline: none;
+  box-shadow: 0 8px 28px rgba(13, 45, 100, 0.14);
+}
+
+@media (max-width: 576px) {
+  .sn-add-btn,
+  .sn-checklist-btn {
+    width: 46%;
+    padding: 10px 12px;
+  }
+}
+
+/* Page container and spacing */
+.student-note-container {
+  padding-bottom: 3.5rem;
+}
+
+.remove-gap {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.note-actions-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+/* Generic elevated card behavior so any .card inside this page fills parent and lifts */
+.notes-list .card,
+.upload-card,
+.media-item,
+.camera-card {
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 220ms ease;
+  will-change: transform;
+}
+
+/* Notes list styling */
+.notes-list .card {
+  border-radius: 14px;
+  border: 1px solid rgba(11, 28, 50, 0.04);
+  box-shadow: 0 14px 40px rgba(11, 28, 50, 0.07);
+}
+.notes-list .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 80px rgba(11, 28, 50, 0.14);
+  z-index: 4;
+}
+.notes-list .card-body h5 {
+  color: #0b3b66;
+}
+.notes-list .card-body p {
+  color: #4b5563;
+}
+
+/* New: semantic class for note description text */
+.note-description {
+  color: #16324a; /* darker navy for stronger contrast */
+  font-size: 0.95rem; /* slightly larger than default small text */
+  line-height: 1.45;
+  margin: 0.4rem 0 0.6rem 0;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .note-description {
+    font-size: 0.92rem; /* small adjustment for mobile */
+  }
+}
+
+/* Notes card body spacing and actions */
+.notes-list .card-body {
+  padding: 18px 20px;
+}
+
+.note-actions-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.note-actions-row .btn {
+  min-width: 92px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(11, 28, 50, 0.06);
+}
+
+/* Responsive notes columns: make two columns on md and above, full width on small screens */
+@media (max-width: 768px) {
+  .notes-list > .col-md-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .note-actions-row {
+    justify-content: center;
+  }
+}
+
+/* Upload card */
+.upload-card {
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px dashed rgba(15, 30, 50, 0.4);
+  background: rgba(255, 255, 255, 0.96);
+}
+.upload-card .form-control[type="file"] {
+  width: auto;
+}
+
+/* Enhanced upload form */
+.upload-form {
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-file {
+  flex: 0 0 auto;
+  border-radius: 10px;
+  padding: 6px 10px;
+  border: 1px solid rgba(11, 28, 50, 0.06);
+  background: #fbfdff;
+}
+
+.upload-select {
+  min-width: 160px;
+  border-radius: 10px;
+  padding: 6px 10px;
+  border: 1px solid rgba(11, 28, 50, 0.2);
+  background: #fff;
+}
+
+.upload-btn {
+  background: linear-gradient(90deg, #10b981, #06b6d4); /* teal -> cyan */
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(6, 18, 30, 0.09);
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 120ms ease;
+}
+
+.upload-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 60px rgba(6, 18, 30, 0.12);
+  opacity: 0.98;
+}
+
+@media (max-width: 576px) {
+  .upload-form {
+    flex-direction: column;
+    /* align-items: stretch; */
+  }
+  .upload-file,
+  .upload-select,
+  .upload-btn {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  .upload-file {
+    padding: 10px;
+    display: block;
+    max-width: 50%;
+  }
+
+  /* Remove Bootstrap end margins that can cause horizontal overflow */
+  .upload-form .me-3 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Slightly tighter vertical spacing on very small screens */
+  .upload-form {
+    gap: 8px;
+  }
+}
+
+/* Media grid */
+.media-grid {
+  display: grid;
+  /* ensure each media item has a sensible minimum and will expand to fill the column */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px; /* denser media layout */
+  margin-top: 12px;
+}
+.media-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(11, 28, 50, 0.04);
+  box-shadow: 0 10px 28px rgba(11, 28, 50, 0.06);
+}
+.media-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 56px rgba(11, 28, 50, 0.12);
+}
+
+.media-thumb {
+  max-width: 140px;
+  height: auto;
+  display: block;
+  margin: 8px auto 6px auto;
+}
+
+.media-audio {
+  width: 100%;
+}
+
+.media-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Small helper: make the media-col a simple grid item wrapper so it respects grid gaps */
+.media-col {
+  display: block;
+}
+
+/* Camera / video styles */
+.camera-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(11, 28, 50, 0.07);
+}
+.camera-card video {
+  width: 100%;
+  border-radius: 8px;
+  max-height: 360px;
+  object-fit: cover;
+  background: #000;
+}
+
+.camera-video {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.camera-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.camera-btn {
+  min-width: 130px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(11, 28, 50, 0.06);
+}
+
+@media (max-width: 576px) {
+  .camera-actions {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .camera-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.camera-blue-btn {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 34px rgba(11, 28, 50, 0.07);
+  border: 1px solid rgba(11, 28, 50, 0.04);
+}
+
+/* Audio recorder section: improved layout, buttons and playback box */
+.audio-recorder {
+  background: #ffffff;
+  border-radius: 12px;
+  /* padding: 16px; */
+  box-shadow: 0 12px 34px rgba(11, 28, 50, 0.07);
+  border: 1px solid rgba(11, 28, 50, 0.04);
+}
+
+.audio-recorder .recorder-header {
+  font-weight: 700;
+  color: #0b3b66;
+  margin-bottom: 8px;
+}
+
+.audio-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* align-items: stretch; */
+}
+
+.audio-controls .recorder-btn,
+.audio-controls .recorder-btn.warn {
+  align-items: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(11, 28, 50, 0.06);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.audio-controls .recorder-btn:active {
+  transform: translateY(1px) scale(0.998);
+}
+
+.audio-controls .recorder-btn.primary {
+  background: #2563eb; /* primary blue to match other buttons */
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.08);
+  cursor: pointer;
+}
+
+.audio-controls .recorder-btn.warn {
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+}
+
+.audio-controls .recorder-btn.danger {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+}
+
+.playback-box {
+  margin-top: 14px;
+  padding: 12px;
+  background: #fbfdff;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 28, 50, 0.03);
+}
+
+.playback-box audio {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .audio-controls {
+    gap: 8px;
+  }
+  .audio-controls .recorder-btn {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+}
+
+/* Desktop: left-align audio controls so buttons sit flush with card content */
+@media (min-width: 768px) {
+  .audio-recorder .audio-controls {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .audio-controls .recorder-btn {
+    /* allow button to size naturally rather than enforcing a minimum that creates white space */
+    min-width: 0;
+    flex: 1 1 auto; /* expand buttons equally so none leaves an empty gap */
+  }
+  /* keep explicit rule for primary if further overrides are needed */
+  .audio-controls .recorder-btn.primary {
+    min-width: 0;
+  }
+}
+
+/* Modal overrides: match site theme */
+.modal-content {
+  border-radius: 12px;
+  border: 1px solid rgba(11, 28, 50, 0.05);
+  box-shadow: 0 26px 80px rgba(11, 28, 50, 0.1);
+}
+.modal-header {
+  border-bottom: 1px solid rgba(11, 28, 50, 0.04);
+}
+
+/* Buttons */
+.btn-primary {
+  background: #2563eb; /* blue-600 */
+  border: none;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #1e4fd8;
+}
+.btn-warning {
+  background: #f59e0b; /* amber-500 */
+  border: none;
+  color: #fff;
+}
+.btn-warning:hover,
+.btn-warning:focus {
+  background: #d89108;
+}
+
+/* additional neat flat colors for common variants */
+.btn-success {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+}
+.btn-success:hover {
+  background: #13833f;
+}
+.btn-danger {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+}
+.btn-danger:hover {
+  background: #b91c1c;
+}
+.btn-info {
+  background: #0891b2;
+  color: #fff;
+  border: none;
+}
+.btn-info:hover {
+  background: #057a97;
+}
+.btn-secondary {
+  background: #6b7280;
+  color: #fff;
+  border: none;
+}
+.btn-secondary:hover {
+  background: #54585f;
+}
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+  .media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .camera-card video {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .notes-list .card {
+    margin-bottom: 12px;
+  }
+  .media-grid {
+    grid-template-columns: 1fr; /* single column on small screens */
+    gap: 12px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .topic-title {
+    font-size: 14px;
+  }
+}
+
+/* Ensure media thumbnails never overflow their card */
+.media-thumb {
+  max-width: 100%;
+  height: auto;
+}
+
+.media-item {
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+@media (max-width: 420px) {
+  .important-topics-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* small helper spacing */
+.mb-1-5 {
+  margin-bottom: 1.25rem;
+}

@@ -1,0 +1,297 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root,
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure full height */
+}
+
+.content {
+  flex: 1; /* Pushes the footer to the bottom */
+  transition: background 650ms ease-in-out,
+    background-position 650ms ease-in-out;
+  /* default background (home) */
+  background: linear-gradient(
+    135deg,
+    #2ed5c9 0%,
+    #66d6a6 30%,
+    #6dd6d9 60%,
+    #4aa6f3 100%
+  );
+}
+
+.books-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: transform 0.3s ease-out;
+}
+
+.book {
+  position: absolute;
+  background-color: #a98e73;
+  border: 2px solid #7d6b5d;
+  border-radius: 2px 4px 4px 2px;
+  opacity: 0.15;
+}
+
+.book::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -6px;
+  width: 4px;
+  height: calc(100% + 4px);
+  background-color: #7d6b5d;
+  border-radius: 2px 0 0 2px;
+}
+
+.book1 {
+  top: 10%;
+  left: 5%;
+  width: 100px;
+  height: 150px;
+  transform: rotate(-15deg);
+}
+
+.book2 {
+  top: 50%;
+  left: 80%;
+  width: 120px;
+  height: 180px;
+  transform: rotate(10deg);
+  background-color: #8c6f5a;
+}
+
+.book3 {
+  top: 80%;
+  left: 10%;
+  width: 90px;
+  height: 130px;
+  transform: rotate(-5deg);
+  background-color: #c0a085;
+}
+
+.book4 {
+  top: 25%;
+  left: 90%;
+  width: 80px;
+  height: 120px;
+  transform: rotate(20deg);
+  background-color: #a98e73;
+}
+
+.book5 {
+  top: 60%;
+  left: 2%;
+  width: 110px;
+  height: 160px;
+  transform: rotate(-25deg);
+  background-color: #8c6f5a;
+}
+
+/* --- Stationery --- */
+.pencil,
+.pen,
+.scissors {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+  transition: transform 0.3s ease-out;
+}
+
+.pencil1 {
+  width: 150px;
+  height: 150px;
+  background-image: url("./components/assets/pencil.svg");
+  bottom: 25%;
+  right: 25%;
+  transform: rotate(25deg);
+}
+
+.pencil2 {
+  width: 180px;
+  height: 180px;
+  background-image: url("./components/assets/pencil1.svg");
+  top: 15%;
+  left: 10%;
+  transform: rotate(-35deg);
+}
+
+.pen1 {
+  width: 160px;
+  height: 160px;
+  background-image: url("./components/assets/pen.svg");
+  top: 20%;
+  right: 10%;
+  transform: rotate(15deg);
+}
+
+.scissors1 {
+  width: 130px;
+  height: 130px;
+  background-image: url("./components/assets/scissors.svg");
+  bottom: 20%;
+  left: 15%;
+  transform: rotate(-20deg) scaleX(-1); /* Flipped */
+}
+
+/* Animation for stationery */
+@keyframes float-stationery {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--initial-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-15px)
+      rotate(calc(var(--initial-rotate, 0deg) + 5deg));
+  }
+}
+
+.pencil,
+.pen,
+.scissors {
+  animation: float-stationery 8s ease-in-out infinite;
+}
+.pencil1 {
+  --initial-rotate: 25deg;
+  animation-delay: -2s;
+}
+.pencil2 {
+  --initial-rotate: -35deg;
+  animation-delay: -4s;
+}
+.pen1 {
+  --initial-rotate: 15deg;
+  animation-delay: -6s;
+}
+.scissors1 {
+  --initial-rotate: -20deg;
+  animation-delay: -1s;
+}
+
+/* Background variants - add more as needed */
+/* html.bg-home .content {
+  background: linear-gradient(
+    135deg,
+    #2ed5c9 0%,
+    #66d6a6 30%,
+    #6dd6d9 60%,
+    #4aa6f3 100%
+  );
+} */
+/* html.bg-fileupload .content {
+  background: linear-gradient(135deg, #ffd7a8 0%, #ffb4a2 40%, #f59eeb 100%);
+}
+html.bg-admin .content {
+  background: linear-gradient(135deg, #e0f7ff 0%, #d5efff 30%, #cde7ff 100%);
+}
+html.bg-home-about .content {
+  background: linear-gradient(135deg, #b8fff1 0%, #9be7ff 40%, #c6b4ff 100%);
+}
+html.bg-login .content,
+html.bg-signup .content {
+  background: linear-gradient(135deg, #f5e6ff 0%, #e7f4ff 50%, #fff8e7 100%);
+} */
+/* html.bg-student .content {
+  background: linear-gradient(135deg, #f2f7ff 0%, #dfeaff 50%, #e9fbe9 100%);
+} */
+
+/* smooth background-position animation if you want movement */
+.content {
+  background-position: 0% 50%;
+}
+.animate-bg {
+  animation: bg-pan 12s linear infinite;
+}
+@keyframes bg-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+footer {
+  background: #343a40; /* Dark background */
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+/* 
+
+/* Ensure the html and body take full height and have no default margin */
+/* html, body {
+  height: 100%;
+  margin: 0;
+} */
+
+/* Main container is a flex column with minimum height equal to viewport height */
+/* .app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
+
+/* Main content grows to fill available space */
+/* .main-content {
+  flex: 1; */
+/* Add some padding at the bottom to ensure that when content is short, 
+     it doesn’t get hidden by the footer */
+/* padding-bottom: 2rem; */
+/* } */

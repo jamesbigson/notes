@@ -1,0 +1,184 @@
+/* PdfChatApp component styles */
+:root {
+  --card-bg: #ffffff;
+  --muted: #6b7280;
+  --primary: #4753ff;
+  --accent: #f3f4f6;
+}
+
+.pdf-chat-root {
+  margin: 2rem auto;
+  max-width: 720px;
+  padding: 0 16px;
+}
+
+.pdf-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 36, 0.04);
+}
+
+.pdf-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f1724;
+}
+
+.upload-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.file-input {
+  position: absolute;
+  left: -9999px;
+}
+
+.file-choose {
+  background: linear-gradient(180deg, #e9e6ff, #e1dbff);
+  color: #312e81;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(74, 44, 230, 0.08);
+}
+
+.file-name {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 360px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  margin-left: auto;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Keep buttons a fixed, stable height and prevent text wrapping (e.g. "Thinking...") */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 40px; /* consistent touch target */
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.btn.primary,
+.btn.ghost,
+.file-choose {
+  white-space: nowrap;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 10px 30px rgba(74, 44, 230, 0.08);
+}
+
+.btn.ghost {
+  background: white;
+  color: #374151;
+  border: 1px solid #e6e8eb;
+  margin-left: 10px;
+}
+
+.chat-area {
+  margin-top: 12px;
+}
+
+.pdf-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e6e8eb;
+  resize: vertical;
+}
+
+.chat-list {
+  margin-top: 16px;
+}
+
+.chat-bubble {
+  background: #f8f8fb;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.chat-q {
+  color: #0f1724;
+  margin-bottom: 8px;
+}
+.chat-a {
+  color: #334155;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+  .file-choose,
+  .btn.primary {
+    flex: 1 1 auto;
+  }
+  .file-name {
+    max-width: 100%;
+  }
+}
+
+/* Utility to hide sections when QA is suppressed */
+.hidden {
+  display: none !important;
+}
+
+/* MCQ styles */
+.mcq-block {
+  margin-top: 18px;
+}
+.mcq-item {
+  background: #f0f0f0;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.mcq-question {
+  font-weight: 700;
+}
+.mcq-option {
+  margin-left: 8px;
+}
+.mcq-result.correct {
+  color: green;
+  font-weight: 700;
+}
+.mcq-result.wrong {
+  color: red;
+  font-weight: 700;
+}
